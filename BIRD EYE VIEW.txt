@@ -1,0 +1,16 @@
+import cv2
+import numpy as np
+img = cv2.imread("C:/Users/dell/Desktop/project work/perspective transformation/mall.jfif")
+cv2.circle(img, (70, 206), 5, (0, 0, 255), -1)
+cv2.circle(img, (1479, 198), 5, (0, 0, 255), -1)
+cv2.circle(img, (22, 1122), 5, (0, 0, 255), -1)
+cv2.circle(img, (1980, 1125), 5, (0, 0, 255), -1)
+pts1 = np.float32([[0, 206], [1479, 198], [32, 1122], [1980, 1125]])
+pts2 = np.float32([[0, 0], [510, 0], [0, 1200], [500, 600]])
+matrix = cv2.getPerspectiveTransform(pts1, pts2)
+result = cv2.warpPerspective(img, matrix, (400, 300)) 
+cv2.imshow("Img", img)
+cv2.imshow("Perspective transformation", result)
+cv2.imwrite("perspective_transformed.jpg", result)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
